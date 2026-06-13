@@ -1,0 +1,28 @@
+utkarshdubey2008/agentic-skills/
+│
+├── README.md                          ← full professional README with collapsible setup sections
+├── AGENTS.md                          ← OpenCode + agent orchestration rules
+├── CONTRIBUTING.md                    ← skill quality bar + contribution guide
+├── LICENSE                            ← MIT, your name
+├── plugin.json                        ← plugin manifest
+├── .gitignore
+│
+├── skills/
+│   └── frontend-excellence/
+│       ├── SKILL.md
+│       └── examples.md
+│
+├── docs/
+│   ├── getting-started.md             ← universal guide for any agent
+│   ├── skill-anatomy.md               ← format spec for contributors
+│   ├── cursor-setup.md
+│   ├── gemini-cli-setup.md
+│   ├── windsurf-setup.md
+│   ├── opencode-setup.md
+│   └── copilot-setup.md
+│
+├── .claude/commands/
+│   └── frontend.md                    ← /frontend slash command for Claude Code
+│
+└── .gemini/commands/
+    └── frontend.md                    ← /frontend slash command for Gemini CLI
