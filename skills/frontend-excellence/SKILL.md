@@ -547,58 +547,161 @@ Content
   [ ] No hardcoded values that should come from data
   [ ] Numerical values are formatted (1000 → 1,000 or 1K depending on context)
   [ ] Dates are formatted consistently and localized if needed
+
+Copy and Tone
+  [ ] No over-explanation — every sentence says the thing, not that it is about to say the thing
+  [ ] Emoji used intentionally (0–1 per section), not decoratively on every item
+  [ ] Error messages are specific: what failed + what to do next
+  [ ] Empty states are short and action-oriented, not paragraph explanations
+  [ ] CTA labels name the action ("Create project"), not just "Get Started"
+  [ ] Placeholder text shows a real example, not a description of the field
+  [ ] No AI generic phrases: "seamlessly", "unlock the power of", "take it to the next level"
+  [ ] Bold used for one thing per paragraph, not scattered throughout
 ```
 
 ---
 
-## Common Rationalizations
+## Phase 9: Human-Like Copy and Content
 
-| Rationalization | Reality |
+AI-generated interfaces have a recognizable writing style. It signals to users that no human thought about this. Eliminate it entirely.
+
+### The Content Standard
+
+> **"Would a real person at a real company have written this?"**
+
+If the answer is no, rewrite it. Copy is part of the UI. Bad copy makes a polished design feel broken.
+
+### Emoji Usage
+
+Emojis in UI are a tool, not decoration. Apply strict rules:
+
+```
+Allowed:
+  ✓ One emoji in a headline to set tone (used intentionally, not habitually)
+  ✓ Emoji in marketing/landing page hero text where personality is the goal
+  ✓ Status indicators where emoji is the established convention (e.g. ✅ ❌ in CI logs)
+
+Never allowed:
+  ✗ Emoji at the start of every list item
+  ✗ Emoji on every heading or section title
+  ✗ Emoji in error messages (makes errors feel unserious)
+  ✗ Emoji in form labels or input placeholders
+  ✗ Multiple emoji in a single sentence
+  ✗ Emoji used just to "break up the text"
+```
+
+**The test:** Remove the emoji. If the sentence loses nothing, the emoji added nothing. Remove it.
+
+```
+// Bad — emoji as decoration on every item
+🚀 Get started quickly
+⚡ Lightning fast performance
+🔒 Secure by default
+🎯 Built for teams
+
+// Good — clean, confident copy that doesn't need decoration
+Get started in minutes
+Fast by default
+Secure by default
+Built for teams
+```
+
+### Font and Text Hierarchy
+
+Do not use font weight or size as decoration. Every typographic decision must serve hierarchy.
+
+```
+// Bad — bold used for emphasis everywhere, creating visual noise
+Track your <strong>tasks</strong>, manage your <strong>projects</strong>,
+and <strong>collaborate</strong> with your team in <strong>real time</strong>.
+
+// Good — bold used once, where it actually matters
+Track tasks, manage projects, and collaborate with your team.
+One place for everything your team ships.
+```
+
+**Rules:**
+- Maximum two font weights in body copy (regular + bold/semibold)
+- Bold is for the single most important word or phrase per paragraph — not every other word
+- Italics are for citations, technical terms, or genuine emphasis — not style
+- ALL CAPS is for labels and badges only — never for sentences or paragraphs
+- Letter-spacing (`letter-spacing: wider`) is for short labels and badges, never for body text
+
+### Over-Explanation
+
+AI copy over-explains everything. Real product copy is direct and assumes the user is intelligent.
+
+| AI Default | Human Version |
 |---|---|
-| "Accessibility can be added later" | Focus management and semantic structure cannot be retrofitted without rewriting components. The cost multiplies by 5–10× after launch. |
-| "The design isn't final, I'll style it properly then" | The unstyled version is what reviewers and stakeholders see. It sets expectations. Use the design system from day one. |
-| "I only need the happy path for now" | Empty, loading, and error states are not edge cases — they are the first thing a new user sees. Every user encounters loading before they see data. |
-| "The hover state is implicit" | It is not. Every user needs to learn what is clickable. Hover states teach them. |
-| "This is just a prototype" | Prototypes become production. Prototypes that skip states, accessibility, and responsive behavior become production code with all those gaps intact. |
-| "ARIA is complex, I'll skip it" | Most ARIA requirements reduce to: use semantic HTML, label icon buttons, announce dynamic content. Start there. |
-| "The spacing looks fine to me" | "Looks fine" is not the same as "is consistent." Check the values against the design system scale. Invented values compound into visual chaos at scale. |
+| "Welcome to your dashboard! Here you can see an overview of all your important metrics and data." | "Your dashboard" |
+| "Click the button below to get started with creating your first project." | "Create your first project" |
+| "This feature allows you to customize your settings according to your personal preferences." | "Customize your settings" |
+| "No items have been added to this list yet. You can add items by clicking the button above." | "No items yet" + [Add item] button |
+| "An error has occurred while processing your request. Please try again later." | "Couldn't save — try again" |
+| "Are you sure you want to permanently delete this item? This action cannot be undone." | "Delete this project? This can't be undone." |
 
----
+**The rule:** Say the thing. Do not explain that you are about to say the thing.
 
-## Red Flags
+### AI Generic Symbols and Patterns
 
-- Blank screen or `null` return during loading
-- Generic error messages with no recovery action
-- Missing hover or focus states on interactive elements
-- `outline: none` or `outline: 0` without a replacement
-- Spacing values not on the project's scale (e.g., `margin: 13px`)
-- `<div onClick>` instead of `<button>` or `<a>`
-- `<h3>` used because "it looks right," not because it is semantically correct
-- Color as the sole differentiator between states
-- No empty state for data-driven lists or tables
-- Animations with `transition: all` (animates unintended properties, causes jank)
-- Touch targets under 40px in either dimension
-- Mobile layout not tested below 375px
-- Lorem ipsum or placeholder values left in place
+These patterns appear in nearly every AI-generated interface. They signal "an AI made this" immediately:
 
----
+| Pattern | Why it is wrong | Fix |
+|---|---|---|
+| ✨ sparkle emoji on AI features | Overused to the point of self-parody | Use plain text or a custom icon |
+| 🎉 party popper on success states | Infantilizes the user | "Saved" or "Done" is enough |
+| "Unlock the power of..." | Marketing cliché | State what it actually does |
+| "Seamlessly integrate..." | Means nothing | Describe the actual integration |
+| "Take your X to the next level" | Empty superlative | Describe the actual improvement |
+| Bullet lists of three with parallel "verb + noun" structure | Reads like AI output | Write actual sentences |
+| Hero sections with "The [adjective] way to [verb] your [noun]" | Template headline | Write a headline about the specific product |
+| Every CTA labeled "Get Started" | No differentiation | Name what they are starting ("Create project", "Connect account") |
+| Feature cards with icon + title + two-sentence description, repeated 6 times | AI layout template | Let content drive layout |
 
-## Verification
+### Empty State Copy
 
-After completing any UI task, confirm:
+Empty states are the most over-explained part of any UI. Real product copy is short and action-oriented.
 
-- [ ] Visual QA checklist passed (see Phase 8)
-- [ ] Renders without console errors or warnings
-- [ ] All interactive elements reachable and operable by keyboard (Tab through the page)
-- [ ] Screen reader announces page structure and dynamic changes correctly
-- [ ] Tested at 320px, 768px, 1280px viewports
-- [ ] All states implemented: loading, empty, error, populated
-- [ ] Spacing, color, and typography follow the project's design system
-- [ ] Motion respects `prefers-reduced-motion`
-- [ ] No accessibility warnings from axe-core or browser DevTools accessibility panel
+```
+// Bad — AI empty state
+📭 No messages yet!
+It looks like you haven't received any messages yet.
+Messages from your team and collaborators will appear here
+once they start reaching out to you.
+[Check back later]
 
-## See Also
+// Good — human empty state
+No messages
+[Invite your team]
+```
 
-For Core Web Vitals targets, bundle optimization, and image performance, see the `performance-optimization` skill.
-For security-focused review of form inputs, authentication UI, and data exposure, see the `security-and-hardening` skill.
-For browser-based runtime debugging and layout inspection, see the `browser-testing-with-devtools` skill.
+### Error Message Copy
+
+Errors must be specific, honest, and give the user a path forward. Never use corporate passive voice.
+
+```
+// Bad — vague AI error
+⚠️ An unexpected error has occurred.
+We're sorry for the inconvenience. Please try again later or
+contact support if the problem persists.
+
+// Good — specific human error
+Couldn't connect to the server. Check your connection and try again.
+[Try again]  [Contact support]
+```
+
+### Placeholder Text
+
+Placeholder text must show real examples, not describe the field.
+
+```
+// Bad — describes the field
+<input placeholder="Enter your email address" />
+<input placeholder="Type your message here..." />
+<input placeholder="Search for items" />
+
+// Good — shows a real example
+<input placeholder="you@company.com" />
+<input placeholder="What's on your mind?" />
+<input placeholder="Search tasks, projects..." />
+```
