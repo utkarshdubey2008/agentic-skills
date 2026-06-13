@@ -213,6 +213,14 @@ See [docs/skill-anatomy.md](docs/skill-anatomy.md) for the format spec and [CONT
 
 ---
 
+## Credits
+
+The skill structure, anatomy, and repository conventions in this project are heavily inspired by [Addy Osmani's agent-skills](https://github.com/addyosmani/agent-skills) — a production-grade collection of engineering skills for AI coding agents. The frontmatter format, section anatomy (Overview → When to Use → Process → Rationalizations → Red Flags → Verification), progressive disclosure pattern, and multi-tool setup approach all originate from that work.
+
+The `frontend-excellence` skill builds on that foundation with original content focused on design fidelity, interaction quality, human-like copy, and visual QA.
+
+---
+
 ## License
 
 MIT — use these skills in your projects, teams, and tools. See [LICENSE](LICENSE).
